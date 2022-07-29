@@ -7,9 +7,9 @@ const Cart = require('../models/Cart');
 router.get('/', async (req, res, next) => {
 	try {
 		// 1. Get all of the CartItem from the DB
-		const Cart = await Cart.find({});
+		const cart = await Cart.find({});
 		// 2. Send them back to the client as JSON
-		res.json(Cart);
+		res.json(cart);
 	} catch (err) {
 		// if there's an error, pass it on!
 		next(err);
@@ -33,7 +33,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
 	try {
 		// 1. Use the data in the req body to create a new ArtItem
-		const cart = await ArtItem.create(req.body);
+		const cart = await Cart.create(req.body);
 		// 2. If the create is successful, send back the record that was inserted, specifying 201 status for Created
 		res.status(201).json(cart);
 	} catch (err) {
